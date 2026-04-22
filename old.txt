@@ -1,0 +1,130 @@
+old index.ts:
+
+// import { Image, Pressable, Text, TouchableOpacity, View } from "react-native";
+
+// export default function Index() {
+//   return (
+//     <View
+//       style={{
+//         flex: 1,
+//         justifyContent: "center",
+//         alignItems: "center",
+//         backgroundColor: "black",
+//       }}
+//     >
+//       <View
+//         style={{
+//           alignItems: "center",
+//           backgroundColor: "orange",
+//           padding: 50,
+//           borderRadius: 100,
+//         }}
+//       >
+//         <Image
+//           source={require("../assets/images/splash-icon.png")}
+//           style={{ width: 100, height: 100 }}
+//         />
+//         <Image
+//           source={{
+//             uri: "https://preview.redd.it/winner-bini-mikha-v0-cgiegvvc2jge1.jpg?width=640&crop=smart&auto=webp&s=c0831311f383f9ccc66fbc652469b792731bebc9",
+//           }}
+//           style={{
+//             width: 100,
+//             height: 100,
+//             objectFit: "fill",
+//             borderRadius: 100,
+//           }}
+//         />
+//         <Text style={{ color: "white", fontSize: 30 }}>Hello Sali</Text>
+//         <TouchableOpacity onPress={() => alert("Ooops You toched me")}>
+//           <Text> Press Me</Text>
+//         </TouchableOpacity>
+
+//         <Pressable onPress={() => alert("Ooops You toched me - pressable")}>
+//           <Text> Press Me - pressable</Text>
+//         </Pressable>
+//       </View>
+//     </View>
+//   );
+// }
+
+
+old _layout.tsx:
+// import { Stack } from "expo-router";
+// import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+
+// export default function RootLayout() {
+//   return (
+//     <SafeAreaProvider>
+//       <SafeAreaView
+//         style={{
+//           flex: 1,
+//         }}
+//       >
+//         <Stack>
+//           <Stack.Screen name="index" options={{ title: "Feed" }} />
+//           <Stack.Screen
+//             name="notifications"
+//             options={{ title: "Notifications" }}
+//           />
+//         </Stack>
+//       </SafeAreaView>
+//     </SafeAreaProvider>
+//   );
+// }
+
+
+new _layout:
+import { Ionicons } from "@expo/vector-icons";
+import { Tabs } from "expo-router";
+import { COLORS } from "../../constants/theme";
+export default function TabLayout() {
+  return (
+    <Tabs
+      screenOptions={{
+        tabBarShowLabel: true,
+      }}
+    >
+      <Tabs.Screen
+        options={{
+          tabBarIcon: ({ size, color }) => (
+            <Ionicons name="home" size={size} color={color} />
+          ),
+        }}
+        name="index"
+      />
+      <Tabs.Screen
+        options={{
+          tabBarIcon: ({ size, color }) => (
+            <Ionicons name="bookmark" size={size} color={color} />
+          ),
+        }}
+        name="bookmarks"
+      />
+      <Tabs.Screen
+        name="create"
+        options={{
+          tabBarIcon: ({ size }) => (
+            <Ionicons name="create" size={size} color={COLORS.primary} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="notifications"
+        options={{
+          tabBarIcon: ({ size, color }) => (
+            <Ionicons name="heart" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          tabBarIcon: ({ size, color }) => (
+            <Ionicons name="person" size={size} color={color} />
+          ),
+        }}
+      />
+    </Tabs>
+  );
+}
